@@ -10,6 +10,8 @@
 		D910DB821A9E2C4C00612ED6 /* LoggingKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D910DB811A9E2C4C00612ED6 /* LoggingKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D910DB881A9E2C4C00612ED6 /* LoggingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D910DB7C1A9E2C4C00612ED6 /* LoggingKit.framework */; };
 		D910DB8F1A9E2C4C00612ED6 /* LoggingKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D910DB8E1A9E2C4C00612ED6 /* LoggingKitTests.swift */; };
+		D910DB991A9E2C5E00612ED6 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = D910DB981A9E2C5E00612ED6 /* Logging.swift */; };
+		D910DB9A1A9E2C5E00612ED6 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = D910DB981A9E2C5E00612ED6 /* Logging.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +31,7 @@
 		D910DB871A9E2C4C00612ED6 /* LoggingKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LoggingKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D910DB8D1A9E2C4C00612ED6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D910DB8E1A9E2C4C00612ED6 /* LoggingKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggingKitTests.swift; sourceTree = "<group>"; };
+		D910DB981A9E2C5E00612ED6 /* Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				D910DB811A9E2C4C00612ED6 /* LoggingKit.h */,
+				D910DB981A9E2C5E00612ED6 /* Logging.swift */,
 				D910DB7F1A9E2C4C00612ED6 /* Supporting Files */,
 			);
 			path = LoggingKit;
@@ -209,6 +213,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D910DB991A9E2C5E00612ED6 /* Logging.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,6 +222,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D910DB8F1A9E2C4C00612ED6 /* LoggingKitTests.swift in Sources */,
+				D910DB9A1A9E2C5E00612ED6 /* Logging.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,6 +327,7 @@
 		D910DB931A9E2C4C00612ED6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -330,12 +337,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		D910DB941A9E2C4C00612ED6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
