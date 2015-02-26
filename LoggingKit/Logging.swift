@@ -56,15 +56,15 @@ public struct Logging {
         var description: String {
             switch self {
             case .Error:
-                return "Error"
+                return "ERROR"
             case .Warn:
-                return "Warn"
+                return "WARN"
             case .Info:
-                return "Info"
+                return "INFO"
             case .Debug:
-                return "Debug"
+                return "DEBUG"
             case .Verbose:
-                return "Verbose"
+                return "VERBOSE"
             }
         }
     }
@@ -145,7 +145,7 @@ public struct Logging {
     
     static func printer<T>(level: Level, @autoclosure _ t: () -> T!, _ file: StaticString, _ function: StaticString, _ line: Int) -> (String, T!)? {
         if self.level.rawValue > level.rawValue - 1 {
-            return ("", t())
+            return ("[\(level)] \(file.stringValue.lastPathComponent) - \(function)@L\(line): ", t())
         }
         return nil
     }

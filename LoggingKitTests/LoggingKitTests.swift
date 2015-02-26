@@ -63,6 +63,19 @@ class LoggingKitTests: XCTestCase {
         
     }
     
+    func test_format() {
+        
+        LOGGING_VERBOSE()
+        
+        let (prefix, _) = Logging.printer(.Verbose, "message", "/path/to/__file__.swift", "__function__", 100)!
+        XCTAssertEqual(prefix, "[VERBOSE] __file__.swift - __function__@L100: ")
+        
+        Logging.v(1, "2", 3.0, "4")
+        
+        let v: String? = nil
+        Logging.v(1, "2", 3.0, v)
+    }
+    
     func test_表示されなければ評価されない() {
         var cnt = 0
         let counter = { ++cnt }
