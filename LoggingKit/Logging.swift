@@ -80,7 +80,7 @@ public struct Logging {
     :param: function <#function description#>
     :param: line     <#line description#>
     */
-    public static func e<T>(@autoclosure object: () -> T!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
+    public static func e<T>(object: @autoclosure () -> T!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
         if let (p, t) = self.printer(.Error, object, file, function, line) {
             doPrint(p, t)
         }
@@ -94,7 +94,7 @@ public struct Logging {
     :param: function <#function description#>
     :param: line     <#line description#>
     */
-    public static func w<T>(@autoclosure object: () -> T!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
+    public static func w<T>(object: @autoclosure () -> T!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
         if let (p, t) = self.printer(.Warn, object, file, function, line) {
             doPrint(p, t)
         }
@@ -108,7 +108,7 @@ public struct Logging {
     :param: function <#function description#>
     :param: line     <#line description#>
     */
-    public static func i<T>(@autoclosure object: () -> T!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
+    public static func i<T>(object: @autoclosure () -> T!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
         if let (p, t) = self.printer(.Info, object, file, function, line) {
             doPrint(p, t)
         }
@@ -122,7 +122,7 @@ public struct Logging {
     :param: function <#function description#>
     :param: line     <#line description#>
     */
-    public static func d<T>(@autoclosure object: () -> T!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
+    public static func d<T>(object: @autoclosure () -> T!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
         if let (p, t) = self.printer(.Debug, object, file, function, line) {
             doPrint(p, t)
         }
@@ -136,14 +136,14 @@ public struct Logging {
     :param: function <#function description#>
     :param: line     <#line description#>
     */
-    public static func v<T>(@autoclosure object: () -> T!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
+    public static func v<T>(object: @autoclosure () -> T!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
         if let (p, t) = self.printer(.Verbose, object, file, function, line) {
             doPrint(p, t)
         }
     }
 
     
-    static func printer<T>(level: Level, @autoclosure _ t: () -> T!, _ file: StaticString, _ function: StaticString, _ line: Int) -> (String, T!)? {
+    static func printer<T>(level: Level, _ t: @autoclosure () -> T!, _ file: StaticString, _ function: StaticString, _ line: Int) -> (String, T!)? {
         if self.level.rawValue > level.rawValue - 1 {
             return ("[\(level)] \(file.stringValue.lastPathComponent) - \(function)@L\(line): ", t())
         }
@@ -154,19 +154,19 @@ public struct Logging {
 //MARK: verbose
 extension Logging {
     
-    public static func e<T1, T2>(@autoclosure t1: () -> T1!, @autoclosure _ t2: () -> T2!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
+    public static func e<T1, T2>(t1: @autoclosure () -> T1!, _ t2: @autoclosure () -> T2!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
         self.e((t1(), t2()), file, function, line)
     }
     
-    public static func e<T1, T2, T3>(@autoclosure t1: () -> T1!, @autoclosure _ t2: () -> T2!, @autoclosure _ t3: () -> T3!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
+    public static func e<T1, T2, T3>(t1: @autoclosure () -> T1!, _ t2: @autoclosure () -> T2!, _ t3: @autoclosure () -> T3!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
         self.e((t1(), t2(), t3()), file, function, line)
     }
     
-    public static func e<T1, T2, T3, T4>(@autoclosure t1: () -> T1!, @autoclosure _ t2: () -> T2!, @autoclosure _ t3: () -> T3!, @autoclosure _ t4: () -> T4!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
+    public static func e<T1, T2, T3, T4>(t1: @autoclosure () -> T1!, _ t2: @autoclosure () -> T2!, _ t3: @autoclosure () -> T3!, _ t4: @autoclosure () -> T4!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
         self.e((t1(), t2(), t3(), t4()), file, function, line)
     }
     
-    public static func e<T1, T2, T3, T4, T5>(@autoclosure t1: () -> T1!, @autoclosure _ t2: () -> T2!, @autoclosure _ t3: () -> T3!, @autoclosure _ t4: () -> T4!, @autoclosure _ t5: () -> T5!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
+    public static func e<T1, T2, T3, T4, T5>(t1: @autoclosure () -> T1!, _ t2: @autoclosure () -> T2!, _ t3: @autoclosure () -> T3!, _ t4: @autoclosure () -> T4!, _ t5: @autoclosure () -> T5!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
         self.e((t1(), t2(), t3(), t4(), t5()), file, function, line)
     }
 }
@@ -174,19 +174,19 @@ extension Logging {
 //MARK: warn
 extension Logging {
     
-    public static func w<T1, T2>(@autoclosure t1: () -> T1!, @autoclosure _ t2: () -> T2!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
+    public static func w<T1, T2>(t1: @autoclosure () -> T1!, _ t2: @autoclosure () -> T2!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
         self.w((t1(), t2()), file, function, line)
     }
     
-    public static func w<T1, T2, T3>(@autoclosure t1: () -> T1!, @autoclosure _ t2: () -> T2!, @autoclosure _ t3: () -> T3!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
+    public static func w<T1, T2, T3>(t1: @autoclosure () -> T1!, _ t2: @autoclosure () -> T2!, _ t3: @autoclosure () -> T3!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
         self.w((t1(), t2(), t3()), file, function, line)
     }
     
-    public static func w<T1, T2, T3, T4>(@autoclosure t1: () -> T1!, @autoclosure _ t2: () -> T2!, @autoclosure _ t3: () -> T3!, @autoclosure _ t4: () -> T4!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
+    public static func w<T1, T2, T3, T4>(t1: @autoclosure () -> T1!, _ t2: @autoclosure () -> T2!, _ t3: @autoclosure () -> T3!, _ t4: @autoclosure () -> T4!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
         self.w((t1(), t2(), t3(), t4()), file, function, line)
     }
     
-    public static func w<T1, T2, T3, T4, T5>(@autoclosure t1: () -> T1!, @autoclosure _ t2: () -> T2!, @autoclosure _ t3: () -> T3!, @autoclosure _ t4: () -> T4!, @autoclosure _ t5: () -> T5!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
+    public static func w<T1, T2, T3, T4, T5>(t1: @autoclosure () -> T1!, _ t2: @autoclosure () -> T2!, _ t3: @autoclosure () -> T3!, _ t4: @autoclosure () -> T4!, _ t5: @autoclosure () -> T5!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
         self.w((t1(), t2(), t3(), t4(), t5()), file, function, line)
     }
 }
@@ -194,19 +194,19 @@ extension Logging {
 //MARK: info
 extension Logging {
     
-    public static func i<T1, T2>(@autoclosure t1: () -> T1!, @autoclosure _ t2: () -> T2!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
+    public static func i<T1, T2>(t1: @autoclosure () -> T1!, _ t2: @autoclosure () -> T2!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
         self.i((t1(), t2()), file, function, line)
     }
     
-    public static func i<T1, T2, T3>(@autoclosure t1: () -> T1!, @autoclosure _ t2: () -> T2!, @autoclosure _ t3: () -> T3!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
+    public static func i<T1, T2, T3>(t1: @autoclosure () -> T1!, _ t2: @autoclosure () -> T2!, _ t3: @autoclosure () -> T3!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
         self.i((t1(), t2(), t3()), file, function, line)
     }
     
-    public static func i<T1, T2, T3, T4>(@autoclosure t1: () -> T1!, @autoclosure _ t2: () -> T2!, @autoclosure _ t3: () -> T3!, @autoclosure _ t4: () -> T4!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
+    public static func i<T1, T2, T3, T4>(t1: @autoclosure () -> T1!, _ t2: @autoclosure () -> T2!, _ t3: @autoclosure () -> T3!, _ t4: @autoclosure () -> T4!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
         self.i((t1(), t2(), t3(), t4()), file, function, line)
     }
     
-    public static func i<T1, T2, T3, T4, T5>(@autoclosure t1: () -> T1!, @autoclosure _ t2: () -> T2!, @autoclosure _ t3: () -> T3!, @autoclosure _ t4: () -> T4!, @autoclosure _ t5: () -> T5!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
+    public static func i<T1, T2, T3, T4, T5>(t1: @autoclosure () -> T1!, _ t2: @autoclosure () -> T2!, _ t3: @autoclosure () -> T3!, _ t4: @autoclosure () -> T4!, _ t5: @autoclosure () -> T5!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
         self.i((t1(), t2(), t3(), t4(), t5()), file, function, line)
     }
 }
@@ -214,19 +214,19 @@ extension Logging {
 //MARK: debug
 extension Logging {
     
-    public static func d<T1, T2>(@autoclosure t1: () -> T1!, @autoclosure _ t2: () -> T2!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
+    public static func d<T1, T2>(t1: @autoclosure () -> T1!, _ t2: @autoclosure () -> T2!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
         self.d((t1(), t2()), file, function, line)
     }
     
-    public static func d<T1, T2, T3>(@autoclosure t1: () -> T1!, @autoclosure _ t2: () -> T2!, @autoclosure _ t3: () -> T3!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
+    public static func d<T1, T2, T3>(t1: @autoclosure () -> T1!, _ t2: @autoclosure () -> T2!, _ t3: @autoclosure () -> T3!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
         self.d((t1(), t2(), t3()), file, function, line)
     }
     
-    public static func d<T1, T2, T3, T4>(@autoclosure t1: () -> T1!, @autoclosure _ t2: () -> T2!, @autoclosure _ t3: () -> T3!, @autoclosure _ t4: () -> T4!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
+    public static func d<T1, T2, T3, T4>(t1: @autoclosure () -> T1!, _ t2: @autoclosure () -> T2!, _ t3: @autoclosure () -> T3!, _ t4: @autoclosure () -> T4!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
         self.d((t1(), t2(), t3(), t4()), file, function, line)
     }
     
-    public static func d<T1, T2, T3, T4, T5>(@autoclosure t1: () -> T1!, @autoclosure _ t2: () -> T2!, @autoclosure _ t3: () -> T3!, @autoclosure _ t4: () -> T4!, @autoclosure _ t5: () -> T5!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
+    public static func d<T1, T2, T3, T4, T5>(t1: @autoclosure () -> T1!, _ t2: @autoclosure () -> T2!, _ t3: @autoclosure () -> T3!, _ t4: @autoclosure () -> T4!, _ t5: @autoclosure () -> T5!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
         self.d((t1(), t2(), t3(), t4(), t5()), file, function, line)
     }
 }
@@ -234,19 +234,19 @@ extension Logging {
 //MARK: verbose
 extension Logging {
     
-    public static func v<T1, T2>(@autoclosure t1: () -> T1!, @autoclosure _ t2: () -> T2!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
+    public static func v<T1, T2>(t1: @autoclosure () -> T1!, _ t2: @autoclosure () -> T2!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
         self.v((t1(), t2()), file, function, line)
     }
     
-    public static func v<T1, T2, T3>(@autoclosure t1: () -> T1!, @autoclosure _ t2: () -> T2!, @autoclosure _ t3: () -> T3!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
+    public static func v<T1, T2, T3>(t1: @autoclosure () -> T1!, _ t2: @autoclosure () -> T2!, _ t3: @autoclosure () -> T3!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
         self.v((t1(), t2(), t3()), file, function, line)
     }
     
-    public static func v<T1, T2, T3, T4>(@autoclosure t1: () -> T1!, @autoclosure _ t2: () -> T2!, @autoclosure _ t3: () -> T3!, @autoclosure _ t4: () -> T4!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
+    public static func v<T1, T2, T3, T4>(t1: @autoclosure () -> T1!, _ t2: @autoclosure () -> T2!, _ t3: @autoclosure () -> T3!, _ t4: @autoclosure () -> T4!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
         self.v((t1(), t2(), t3(), t4()), file, function, line)
     }
     
-    public static func v<T1, T2, T3, T4, T5>(@autoclosure t1: () -> T1!, @autoclosure _ t2: () -> T2!, @autoclosure _ t3: () -> T3!, @autoclosure _ t4: () -> T4!, @autoclosure _ t5: () -> T5!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
+    public static func v<T1, T2, T3, T4, T5>(t1: @autoclosure () -> T1!, _ t2: @autoclosure () -> T2!, _ t3: @autoclosure () -> T3!, _ t4: @autoclosure () -> T4!, _ t5: @autoclosure () -> T5!, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: Int = __LINE__) {
         self.v((t1(), t2(), t3(), t4(), t5()), file, function, line)
     }
 }

@@ -74,6 +74,7 @@ class LoggingKitTests: XCTestCase {
         
         let v: String? = nil
         Logging.v(1, "2", 3.0, v)
+        Logging.v(1, "2", 3.0, v, Optional(5))
     }
     
     func test_表示されなければ評価されない() {
