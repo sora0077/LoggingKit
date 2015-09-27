@@ -8,7 +8,7 @@
 
 import UIKit
 import XCTest
-//import LoggingKit
+@testable import LoggingKit
 
 func fib(n:Int) -> Int {
     if n < 1  {return 0}
@@ -68,7 +68,7 @@ class LoggingKitTests: XCTestCase {
         LOGGING_VERBOSE()
         
         let (prefix, _) = Logging.printer(.Verbose, "message", "/path/to/__file__.swift", "__function__", 100)!
-        XCTAssertEqual(prefix, "[VERBOSE] __file__.swift - __function__@L100: ")
+        XCTAssertEqual(prefix, "[VERBOSE] __file__.swift:100 - __function__")
         
         Logging.v(1, "2", 3.0, "4")
         

@@ -11,7 +11,6 @@
 		D910DB881A9E2C4C00612ED6 /* LoggingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D910DB7C1A9E2C4C00612ED6 /* LoggingKit.framework */; };
 		D910DB8F1A9E2C4C00612ED6 /* LoggingKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D910DB8E1A9E2C4C00612ED6 /* LoggingKitTests.swift */; };
 		D910DB991A9E2C5E00612ED6 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = D910DB981A9E2C5E00612ED6 /* Logging.swift */; };
-		D910DB9A1A9E2C5E00612ED6 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = D910DB981A9E2C5E00612ED6 /* Logging.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -162,6 +161,7 @@
 		D910DB731A9E2C4C00612ED6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = "林達也";
 				TargetAttributes = {
@@ -222,7 +222,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D910DB8F1A9E2C4C00612ED6 /* LoggingKitTests.swift in Sources */,
-				D910DB9A1A9E2C5E00612ED6 /* Logging.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,6 +331,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = LoggingKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -349,6 +349,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = LoggingKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

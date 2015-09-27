@@ -45,7 +45,7 @@ public func LOGGING_VERBOSE() {
 
 public struct Logging {
     
-    enum Level: Int, Printable {
+    enum Level: Int, CustomStringConvertible {
         
         case Error = 1
         case Warn
@@ -145,7 +145,7 @@ public struct Logging {
     
     static func printer<T>(level: Level, @autoclosure _ t: () -> T!, _ file: StaticString, _ function: StaticString, _ line: Int) -> (String, T!)? {
         if self.level.rawValue > level.rawValue - 1 {
-            return ("[\(level)] \(file.stringValue.lastPathComponent) - \(function)@L\(line): ", t())
+            return ("[\(level)] \((file.stringValue as NSString).lastPathComponent):\(line) - \(function)", t())
         }
         return nil
     }
@@ -251,7 +251,7 @@ extension Logging {
     }
 }
 
-private func doPrint<T>(prefix: String, t: T!) {
-    print(prefix)
-    println(t)
+private func doPrint<T>(prefix: String, _ t: T!) {
+    print(prefix, terminator: "")
+    print(t)
 }
